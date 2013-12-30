@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import de.nitram509.mkat.repository.DiskContentService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class MkatGuiceServletConfig extends GuiceServletContextListener {
         install(new MkatAppModule());
 
         bind(RestDispatcherServlet.class);
+        bind(DiskContentService.class);
 
         // hook Jersey into Guice Servlet
         bind(GuiceContainer.class);
