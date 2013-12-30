@@ -1,4 +1,4 @@
-package de.nitram509.mkat.repository.mkat;
+package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.uebersicht.FilmTitel;
 import de.nitram509.mkat.model.Movie;

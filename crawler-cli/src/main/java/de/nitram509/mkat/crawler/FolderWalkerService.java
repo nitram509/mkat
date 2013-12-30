@@ -9,9 +9,9 @@ import de.nitram509.mkat.crawler.folderwalker.FolderWalker;
 import de.nitram509.mkat.model.Media;
 import de.nitram509.mkat.model.MkatFile;
 import de.nitram509.mkat.model.Movie;
-import de.nitram509.mkat.repository.mkat.FilesRepository;
-import de.nitram509.mkat.repository.mkat.MediasRepository;
-import de.nitram509.mkat.repository.mkat.MoviesRepository;
+import de.nitram509.mkat.repository.FilesRepository;
+import de.nitram509.mkat.repository.MediasRepository;
+import de.nitram509.mkat.repository.MoviesRepository;
 import jedi.functional.Filter;
 import jedi.functional.Functor2;
 

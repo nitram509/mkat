@@ -6,9 +6,9 @@ import de.nitram509.mkat.model.Media;
 import de.nitram509.mkat.model.Movie;
 import de.nitram509.mkat.repository.Migrated;
 import de.nitram509.mkat.repository.MigrationService;
-import de.nitram509.mkat.repository.mkat.FilesRepository;
-import de.nitram509.mkat.repository.mkat.MediasRepository;
-import de.nitram509.mkat.repository.mkat.MoviesRepository;
+import de.nitram509.mkat.repository.FilesRepository;
+import de.nitram509.mkat.repository.MediasRepository;
+import de.nitram509.mkat.repository.MoviesRepository;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 

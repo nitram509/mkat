@@ -7,7 +7,7 @@ import de.nitram509.mkat.api.search.SearchResult;
 import de.nitram509.mkat.api.uebersicht.Uebersicht;
 import de.nitram509.videomedialist.repository.DiskContentService;
 import de.nitram509.videomedialist.repository.SearchService;
-import de.nitram509.mkat.repository.mkat.UebersichtService;
+import de.nitram509.mkat.repository.UebersichtService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

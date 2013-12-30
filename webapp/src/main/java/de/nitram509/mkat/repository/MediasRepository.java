@@ -1,4 +1,4 @@
-package de.nitram509.mkat.repository.mkat;
+package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.search.SearchField;
 import de.nitram509.mkat.api.search.SearchOptions;
