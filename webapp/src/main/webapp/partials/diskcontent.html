@@ -1,0 +1,30 @@
+<div ng-controller="DiskContentController">
+
+  <h4>
+   {{diskContent.diskName}}
+    <small>{{diskContent.diskId}}</small>
+  </h4>
+
+  <div class="result-area">
+    <div class="row-fluid">
+
+      <div class="row">
+        <div class="span6 left"><strong>Name</strong></div>
+        <div class="span1 left"><strong>Größe</strong></div>
+        <div class="span1 right"><strong>Datum</strong></div>
+        <div class="span3 right"><strong>Notiz</strong></div>
+        <div class="span1 right"><strong>MD5</strong></div>
+      </div>
+
+      <div class="row" ng-repeat="file in diskContent.files">
+        <div class="span6 left disk-name"><span ng-class="file.identClass"><i ng-class="file.iconClass"> </i>{{file.baseName}}</span></div>
+        <div class="span1 right disk-size">{{file.localeSize}}</div>
+        <div class="span1 right disk-datetime" title="{{file.localeString}}">{{file.localeDateString}}</div>
+        <div class="span3 right disk-notizen">{{file.notizen}}</div>
+        <div class="span1 right disk-md5">{{file.md5}}</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

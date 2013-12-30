@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="mkat">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>MedienKatalog Suchmaschine v2</title>
+  <link rel="stylesheet" href="css-external/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mkat.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <script type="text/javascript" src="js-external/angular.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/SearchService.js"></script>
+  <script type="text/javascript" src="js/UebersichtController.js"></script>
+  <script type="text/javascript" src="js/SearchController.js"></script>
+  <script type="text/javascript" src="js/MenuController.js"></script>
+  <script type="text/javascript" src="js/DescriptionController.js"></script>
+  <script type="text/javascript" src="js/DiskContentController.js"></script>
+  <script type="text/javascript" src="js/DiskContentService.js"></script>
+</head>
+<body>
+<header class="navbar-inner">
+  <div class="container">
+    <h3>MedienKatalog Suchmaschine</h3>
+  </div>
+</header>
+
+<div class="row-fluid">
+
+  <div class="span2">
+
+    <ul class="nav nav-list" ng-controller="MenuController">
+      <li ng-class="isActiveMenu('uebersicht')">
+        <a href="#">
+          <i class="icon-home"></i>
+          <span style="text-transform: capitalize">home</span>
+        </a>
+      </li>
+      <li ng-class="isActiveMenu('search')">
+        <a href="#/search/">
+          <i class="icon-search"></i>
+          <span style="text-transform: capitalize">search</span>
+        </a>
+      </li>
+      <li ng-class="isActiveMenu('statistik')">
+        <a href="#/statistik">
+          <i class="icon-info-sign"></i>
+          <span style="text-transform: capitalize">statistik</span>
+        </a>
+      </li>
+      <li ng-class="isActiveMenu('download')">
+        <a href="#/download">
+          <i class="icon-download-alt"></i>
+          <span style="text-transform: capitalize">download</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="span10" ng-view>
+
+  </div>
+
+</div>
+
+</body>
+</html>

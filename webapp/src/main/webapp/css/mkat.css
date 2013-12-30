@@ -1,0 +1,103 @@
+header {
+  margin-bottom: 10px;
+}
+
+a {
+  cursor: pointer;
+}
+
+a[rel=nofollow] {
+  cursor: default;
+  text-decoration: none;
+  color: #000000;
+}
+
+.home-news-header {
+  margin-bottom: 0;
+}
+
+.advanced-search {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+  -moz-transition: height 0.5s ease;
+  -webkit-transition: height 0.5s ease;
+  -o-transition: height 0.5s ease;
+}
+
+.language {
+  background-color: #F2E710;
+  color: #0000FF;
+  font-size: 85%;
+}
+
+.result-area {
+  margin-left: 20px;
+}
+
+.result-area,
+.result-statistics {
+  margin-right: 5px;
+}
+
+.result-area .left {
+  text-align: left;
+}
+
+.result-area .right {
+  text-align: right;
+}
+
+.result-area .row-fluid *[class*="span"] {
+  min-height: 21px;
+}
+
+.result-area .disk-size,
+.result-area .disk-datetime,
+.result-area .disk-md5 {
+  font-size: 80%;
+  font-family: monospace;
+}
+
+.ident0 { margin-left: 0px}
+.ident1 { margin-left: 16px}
+.ident2 { margin-left: 32px}
+.ident3 { margin-left: 48px}
+.ident4 { margin-left: 64px}
+.ident5 { margin-left: 80px}
+.ident6 { margin-left: 96px}
+.ident7 { margin-left: 112px}
+.ident8 { margin-left: 128px}
+.ident9 { margin-left: 144px}
+.ident10 { margin-left: 160px}
+.ident11 { margin-left: 176px}
+.ident12 { margin-left: 192px}
+.ident13 { margin-left: 208px}
+.ident14 { margin-left: 224px}
+.ident15 { margin-left: 240px}
+.ident16 { margin-left: 256px}
+.ident17 { margin-left: 272px}
+.ident18 { margin-left: 288px}
+.ident19 { margin-left: 304px}
+.ident20 { margin-left: 320px}
+.ident21 { margin-left: 336px}
+.ident22 { margin-left: 352px}
+.ident23 { margin-left: 368px}
+.ident24 { margin-left: 384px}
+.ident25 { margin-left: 400px}
+.ident26 { margin-left: 416px}
+.ident27 { margin-left: 432px}
+.ident28 { margin-left: 448px}
+.ident29 { margin-left: 464px}
+.ident30 { margin-left: 480px}
+.ident31 { margin-left: 496px}
+.ident32 { margin-left: 512px}
+.ident33 { margin-left: 528px}
+.ident34 { margin-left: 544px}
+.ident35 { margin-left: 560px}
+.ident36 { margin-left: 576px}
+.ident37 { margin-left: 592px}
+.ident38 { margin-left: 608px}
+.ident39 { margin-left: 624px}
+.ident40 { margin-left: 640px}
+.ident41 { margin-left: 656px}

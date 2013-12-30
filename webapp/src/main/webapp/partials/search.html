@@ -1,0 +1,110 @@
+<div ng-controller="SearchController">
+  <form name="searchForm" class="form-inline form-search">
+
+    <div class="well">
+
+      <div class="control-group">
+        <div class="input-append">
+            <input id="input-search-query" name="search" type="text" maxlength="50" class="search-query" ng-model="query" ng-submit="doSearch()">
+            <button class="btn" ng-click="doSearch()"><i class="icon-search"></i> Suche</button>
+        </div>
+      </div>
+
+      <div class="advanced-search" ng-style="getAdvancedSearchStyle()">
+
+        <div>
+          <label for="me" class="checkbox inline">Ergebnis mit:</label>
+          <select id="me" style="width: 100px;" ng-model="searchParameterLogic">
+            <option value="or">einem</option>
+            <option value="and">allen</option>
+          </select>
+          <label class="checkbox inline">Suchbegriff(en)</label>
+        </div>
+
+        <div>
+          <label class="checkbox inline">Suche in:</label>
+          <label for="sui" class="checkbox inline">
+            <input type="checkbox" id="sui" ng-model="searchParameterId"> ID
+          </label>
+          <label for="sun" class="checkbox inline">
+            <input type="checkbox" id="sun" ng-model="searchParameterName"> Name
+          </label>
+          <label for="sul" class="checkbox inline">
+            <input type="checkbox" id="sul" ng-model="searchParameterLabel"> Disklabel
+          </label>
+          <label for="sud" class="checkbox inline">
+            <input type="checkbox" id="sud" ng-model="searchParameterDescription"> Beschreibung
+          </label>
+        </div>
+
+        <div>
+          <label class="checkbox inline">Sortierung:</label>
+          <label class="radio inline">
+            <input type="radio" name="searchParameterSort" ng-model="searchParameterSort" value="NAME"> Name
+          </label>
+          <label class="radio inline">
+            <input type="radio" name="searchParameterSort" ng-model="searchParameterSort" value="KOFFER"> Koffer
+          </label>
+          <label class="radio inline">
+            <input type="radio" name="searchParameterSort" ng-model="searchParameterSort" value="DATUM"> Datum
+          </label>
+        </div>
+      </div>
+
+    <span class="pull-right muted">
+      <button class="btn btn-mini" type="button" ng-click="toggleAdvancedSearch()">
+        <i ng-class="advancedSearchIconClass"></i>
+      </button>
+    </span>
+
+    </div>
+
+  </form>
+
+  <div class="result-statistics">
+    <div class="row-fluid">
+      <div class="muted">
+        <div class="pull-right">
+          <small>
+            <small>
+              Zeit für die Anfrage {{searchResult.queryTime}}ms
+            </small>
+          </small>
+        </div>
+    <span>
+      <small>
+        <small>
+          gefundene Einträge: {{searchResult.filmeLength}},
+          für Suche '{{searchResult.query}}'
+        </small>
+      </small>
+    </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="result-area">
+    <div class="row-fluid">
+
+      <div class="row">
+        <div class="span10 left"><strong>Name</strong></div>
+        <div class="span1 left"><strong>ID</strong></div>
+        <div class="span1 right"><strong>Info</strong></div>
+      </div>
+
+      <div class="row" ng-repeat="film in searchResult.filme">
+        <div class="span10 left">
+          <a href-condition="film.description" href-value="'#/description/'+film.id">{{film.name}}</a>
+        </div>
+        <div class="span1 left">
+          <small>{{film.id}}</small>
+        </div>
+        <div class="span1 right">
+          <span class="language" ng-repeat="lang in film.languages">{{lang.shortName}} </span>
+          <a href="#/disk/{{film.id}}" ng-show="film.numberOfFiles > 0"><i class="icon-folder-open"> </i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

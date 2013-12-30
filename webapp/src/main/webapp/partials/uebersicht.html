@@ -1,0 +1,12 @@
+<div ng-controller="UebersichtController">
+  <h4>Die letzten Neuzug&auml;nge</h4>
+  <div ng-repeat="news in uebersicht.news">
+    <h5 class="home-news-header label label-info">{{news.datum}}</h5>
+    <div class="well">
+        <span ng-repeat="filmTitel in news.filmTitels">
+          <a href="#/search/{{filmTitel.id}}">{{filmTitel.name}}</a>,
+        </span>
+      <span class="pull-right"><small class="muted">{{news.anzahl}}</small></span>
+    </div>
+  </div>
+</div>
