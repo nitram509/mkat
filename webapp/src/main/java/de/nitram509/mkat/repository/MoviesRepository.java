@@ -47,7 +47,13 @@ public class MoviesRepository {
   public List<FilmTitel> findByDay(String isoday) {
     List<FilmTitel> titel = new ArrayList<>();
     try {
-      String query = "select movie_id,name from `movies` where left(updated,10) = ? order by name asc;";
+      String query = "select " +
+              "movie_id," +
+              "name, " +
+              "(select media_id from medias k where k.MOVIE_ID = m.MOVIE_ID) as media_id "+
+              "from `movies` m " +
+              "where left(updated,10) = ? " +
+              "order by name asc;";
       PreparedStatement preparedStatement = null;
       try {
         preparedStatement = connection.prepareStatement(query);
@@ -56,7 +62,8 @@ public class MoviesRepository {
         while (resultSet.next()) {
           String movie_name = resultSet.getString("name");
           int movie_id = resultSet.getInt("movie_id");
-          titel.add(new FilmTitel(movie_name, movie_id));
+          int media_id = resultSet.getInt("media_id");
+          titel.add(new FilmTitel(movie_name, media_id));
         }
         resultSet.close();
       } finally {
