@@ -8,7 +8,7 @@ import de.nitram509.mkat.repository.MoviesRepository;
 import javax.inject.Inject;
 import java.util.List;
 
-public class UebersichtService {
+class UebersichtService {
 
   @Inject
   MoviesRepository moviesRepository;

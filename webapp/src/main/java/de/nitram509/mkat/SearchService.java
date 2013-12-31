@@ -10,7 +10,7 @@ import de.nitram509.mkat.repository.MediasRepository;
 import javax.inject.Inject;
 import java.util.List;
 
-public class SearchService {
+class SearchService {
 
   @Inject
   MediasRepository mediasRepository;
