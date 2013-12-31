@@ -2,6 +2,7 @@ package de.nitram509.mkat.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.beans.Transient;
 import java.util.Date;
 
 @XmlRootElement(name = "media")
@@ -37,6 +38,9 @@ public class Media implements Cloneable {
   @XmlElement(name = "media_type")
   public int media_type;
 
+  @XmlElement(name = "numberOfFiles")
+  public int numberOfFiles;
+
   public Media() {
     super();
   }
@@ -59,6 +63,7 @@ public class Media implements Cloneable {
     m.description = this.description;
     m.languages = this.languages;
     m.media_type = this.media_type;
+    m.numberOfFiles = this.numberOfFiles;
     return m;
   }
 }

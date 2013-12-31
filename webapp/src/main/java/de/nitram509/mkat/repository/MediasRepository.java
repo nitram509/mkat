@@ -62,8 +62,8 @@ public class MediasRepository {
   public List<Media> findAll() {
 
     String query = "select media_id,group_id,movie_id,name,label,language,mediatype,updated,description,size"
-        + " from `medias` k"
-        + " ORDER BY MEDIA_ID ASC";
+            + " from `medias` k"
+            + " ORDER BY MEDIA_ID ASC";
 
     try {
       PreparedStatement preparedStatement = null;
@@ -90,16 +90,16 @@ public class MediasRepository {
 
   private void insert(Media media) {
     String query = "insert into `medias` (" +
-        "`group_id`" +
-        ",`movie_id`" +
-        ",`name`" +
-        ",`label`" +
-        ",`size`" +
-        ",`updated`" +
-        ",`language`" +
-        ",`mediatype` " +
-        ",`description` " +
-        ") VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
+            "`group_id`" +
+            ",`movie_id`" +
+            ",`name`" +
+            ",`label`" +
+            ",`size`" +
+            ",`updated`" +
+            ",`language`" +
+            ",`mediatype` " +
+            ",`description` " +
+            ") VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? )";
     try {
       PreparedStatement preparedStatement = null;
       try {
@@ -132,16 +132,16 @@ public class MediasRepository {
 
   private void update(Media media) {
     String query = "UPDATE `medias` SET " +
-        " `group_id` = ?" +
-        ",`movie_id` = ?" +
-        ",`name` = ?" +
-        ",`label` = ?" +
-        ",`size` = ?" +
-        ",`updated` = ?" +
-        ",`language` = ?" +
-        ",`mediatype` = ?" +
-        ",`description` = ?" +
-        "WHERE media_id = ? ";
+            " `group_id` = ?" +
+            ",`movie_id` = ?" +
+            ",`name` = ?" +
+            ",`label` = ?" +
+            ",`size` = ?" +
+            ",`updated` = ?" +
+            ",`language` = ?" +
+            ",`mediatype` = ?" +
+            ",`description` = ?" +
+            "WHERE media_id = ? ";
     try {
       PreparedStatement preparedStatement = null;
       try {
@@ -192,15 +192,16 @@ public class MediasRepository {
     while (resultSet.next()) {
       Media media = new Media();
       media.media_id = resultSet.getInt("MEDIA_ID");
+      media.group_id = resultSet.getString(MEDIA_GROUP_ID);
       media.movie_id = resultSet.getInt("MOVIE_ID");
       media.name = resultSet.getString(MEDIA_NAME);
-      media.group_id = resultSet.getString(MEDIA_GROUP_ID);
       media.label = resultSet.getString(MEDIA_LABEL);
+      media.size = resultSet.getLong("size");
+      media.updated = resultSet.getTimestamp(UPDATED);
       media.languages = resultSet.getInt("language");
       media.media_type = resultSet.getInt("mediatype");
-      media.updated = resultSet.getTimestamp(UPDATED);
       media.description = resultSet.getString("description");
-      media.size = resultSet.getLong("size");
+      media.numberOfFiles = resultSet.getInt("numberOfFiles");
       medias.add(media);
     }
     resultSet.close();
@@ -214,14 +215,24 @@ public class MediasRepository {
     String orderSection = createQuery_OrderSection(searchOptions);
 
     Set<SearchField> searchFields = searchOptions.getSearchFields();
-    boolean applyEscape = (searchFields.size() == 1 && searchFields.contains(SearchField.ID)) == false;
+    boolean applyEscape = !(searchFields.size() == 1 && searchFields.contains(SearchField.ID));
 
-    return "select disk_id,disk_name,disk_label,language,mediatype,updated,description,leih,"
-        + " (select count(*) from `files` f where k.disk_id = f.media_id) as numberOfFiles"
-        + " from `katalog_videos` k"
-        + " where " + whereSection.toString()
-        + ((applyEscape) ? " ESCAPE '" + SQL_ESCAPE_CHARACTER + SQL_ESCAPE_CHARACTER + "' " : "")
-        + " ORDER BY " + orderSection + " ASC";
+    return "SELECT " +
+            "media_id," +
+            "group_id, " +
+            "movie_id, " +
+            "name," +
+            "label," +
+            "size," +
+            "updated," +
+            "language," +
+            "mediatype," +
+            "description," +
+            "(select count(*) from `files` f where k.media_id = f.media_id) as numberOfFiles " +
+            " FROM `medias` k " +
+            " WHERE " + whereSection.toString() +
+            ((applyEscape) ? " ESCAPE '" + SQL_ESCAPE_CHARACTER + SQL_ESCAPE_CHARACTER + "' " : "") +
+            " ORDER BY " + orderSection + " ASC";
   }
 
   String createQuery_OrderSection(SearchOptions searchOptions) {
@@ -257,19 +268,19 @@ public class MediasRepository {
 
       boolean oneField = false;
       if (searchFields.contains(SearchField.ID)) {
-        where.append("disk_id = ?");
+        where.append("media_id = ?");
         usedPlaceholders.add(keyword);
         oneField = true;
       }
       if (searchFields.contains(SearchField.NAME)) {
         if (oneField) where.append(" or ");
-        where.append("disk_name like CONCAT(CONCAT('%', ?),'%')");
+        where.append("name like CONCAT(CONCAT('%', ?),'%')");
         usedPlaceholders.add(keyword);
         oneField = true;
       }
       if (searchFields.contains(SearchField.LABEL)) {
         if (oneField) where.append(" or ");
-        where.append("disk_label like CONCAT(CONCAT('%', ?),'%')");
+        where.append("label like CONCAT(CONCAT('%', ?),'%')");
         usedPlaceholders.add(keyword);
         oneField = true;
       }

@@ -35,7 +35,7 @@ public class Film {
   public int format;
 
   @XmlElement(name = "numberOfFiles")
-  public boolean numberOfFiles;
+  public int numberOfFiles;
 
   public Film() {
     super();
