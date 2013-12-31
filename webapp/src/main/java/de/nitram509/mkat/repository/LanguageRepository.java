@@ -1,4 +1,4 @@
-package de.nitram509.videomedialist.repository;
+package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.languages.Language;
 
@@ -10,12 +10,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LanguageService {
+public class LanguageRepository {
 
   @Inject
   Connection connection;
 
-  public List<Language> loadLanguages(){
+  public List<Language> findAll(){
     List<Language> languages = new ArrayList<>();
     try {
       String query = "select id,name,short,image_path from `languages` order by id asc;";

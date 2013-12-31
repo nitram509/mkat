@@ -1,7 +1,7 @@
 package de.nitram509.mkat.language;
 
 import de.nitram509.mkat.api.languages.Language;
-import de.nitram509.videomedialist.repository.LanguageService;
+import de.nitram509.mkat.repository.LanguageRepository;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,8 +23,8 @@ public class LanguageResolverTest {
   @BeforeMethod
   public void setup() {
     resolver = new LanguageResolver();
-    resolver.languageService = mock(LanguageService.class);
-    when(resolver.languageService.loadLanguages()).thenReturn(createLanguages());
+    resolver.languageService = mock(LanguageRepository.class);
+    when(resolver.languageService.findAll()).thenReturn(createLanguages());
   }
 
   @Test

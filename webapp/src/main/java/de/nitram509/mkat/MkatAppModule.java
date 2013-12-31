@@ -2,9 +2,9 @@ package de.nitram509.mkat;
 
 import com.google.inject.AbstractModule;
 import de.nitram509.mkat.repository.DiskContentService;
+import de.nitram509.mkat.repository.LanguageRepository;
 import de.nitram509.mkat.repository.connection.MkatConnection;
 import de.nitram509.mkat.repository.connection.MkatConnectionFactory;
-import de.nitram509.videomedialist.repository.LanguageService;
 import de.nitram509.videomedialist.repository.SearchService;
 import de.nitram509.videomedialist.repository.connection.VideoMediaListConnectionFactory;
 
@@ -16,7 +16,7 @@ public class MkatAppModule extends AbstractModule {
     bind(Connection.class).toProvider(VideoMediaListConnectionFactory.class);
     bind(MkatConnection.class).toProvider(MkatConnectionFactory.class);
 
-    bind(LanguageService.class);
+    bind(LanguageRepository.class);
     bind(DiskContentService.class);
     bind(SearchService.class);
   }

@@ -1,8 +1,7 @@
-package de.nitram509.videomedialist.repository;
+package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.languages.Language;
 import de.nitram509.videomedialist.repository.connection.VideoMediaListConnectionFactory;
-import de.nitram509.videomedialist.repository.LanguageService;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,19 +9,19 @@ import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class LanguageServiceLearningTest {
+public class LanguageRepositoryLearningTest {
 
-  private LanguageService languageService;
+  private LanguageRepository languageRepository;
 
   @BeforeMethod
   public void setup() {
-    languageService = new LanguageService();
-    languageService.connection = new VideoMediaListConnectionFactory().get();
+    languageRepository = new LanguageRepository();
+    languageRepository.connection = new VideoMediaListConnectionFactory().get();
   }
 
   @Test
   public void loadLanguages() {
-    List<Language> actual = languageService.loadLanguages();
+    List<Language> actual = languageRepository.findAll();
 
     assertThat(actual).contains(createLang("deutsch", "de", "l_de.png"));
     assertThat(actual).contains(createLang("französisch", "fr", "l_fr.png"));

@@ -1,4 +1,4 @@
-package de.nitram509.mkat.repository;
+package de.nitram509.videomedialist.repository;
 
 import de.nitram509.mkat.model.Media;
 import de.nitram509.mkat.model.Movie;
