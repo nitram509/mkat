@@ -230,7 +230,7 @@ public class MediasRepository {
             "description," +
             "(select count(*) from `files` f where k.media_id = f.media_id) as numberOfFiles " +
             " FROM `medias` k " +
-            " WHERE " + whereSection.toString() +
+            " WHERE " + whereSection +
             ((applyEscape) ? " ESCAPE '" + SQL_ESCAPE_CHARACTER + SQL_ESCAPE_CHARACTER + "' " : "") +
             " ORDER BY " + orderSection + " ASC";
   }
