@@ -1,8 +1,9 @@
-package de.nitram509.mkat.repository;
+package de.nitram509.mkat;
 
 import de.nitram509.mkat.api.diskcontent.DiskContent;
 import de.nitram509.mkat.api.diskcontent.FileInfo;
 import de.nitram509.mkat.model.MkatFile;
+import de.nitram509.mkat.repository.FilesRepository;
 
 import javax.inject.Inject;
 import java.sql.Connection;

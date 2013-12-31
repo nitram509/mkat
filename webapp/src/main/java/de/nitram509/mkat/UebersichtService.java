@@ -1,8 +1,9 @@
-package de.nitram509.mkat.repository;
+package de.nitram509.mkat;
 
 import de.nitram509.mkat.api.uebersicht.FilmTitel;
 import de.nitram509.mkat.api.uebersicht.News;
 import de.nitram509.mkat.api.uebersicht.Uebersicht;
+import de.nitram509.mkat.repository.MoviesRepository;
 
 import javax.inject.Inject;
 import java.util.List;
