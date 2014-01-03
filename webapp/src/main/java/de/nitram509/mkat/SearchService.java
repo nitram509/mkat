@@ -3,7 +3,7 @@ package de.nitram509.mkat;
 import de.nitram509.mkat.api.search.Film;
 import de.nitram509.mkat.api.search.SearchOptions;
 import de.nitram509.mkat.api.search.SearchResult;
-import de.nitram509.mkat.language.LanguageResolver;
+import de.nitram509.mkat.model.language.LanguageResolver;
 import de.nitram509.mkat.model.Media;
 import de.nitram509.mkat.repository.MediasRepository;
 

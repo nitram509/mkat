@@ -1,4 +1,4 @@
-package de.nitram509.mkat.language;
+package de.nitram509.mkat.model.language;
 
 import de.nitram509.mkat.api.languages.Language;
 import de.nitram509.mkat.repository.LanguageRepository;
