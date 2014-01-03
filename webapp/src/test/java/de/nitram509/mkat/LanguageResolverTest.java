@@ -1,5 +1,6 @@
-package de.nitram509.mkat.model.language;
+package de.nitram509.mkat;
 
+import de.nitram509.mkat.LanguageResolver;
 import de.nitram509.mkat.api.languages.Language;
 import de.nitram509.mkat.repository.LanguageRepository;
 import org.testng.annotations.BeforeMethod;
