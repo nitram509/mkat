@@ -15,12 +15,6 @@ public class UebersichtHttpController {
   @Inject
   UebersichtService uebersichtService;
 
-  @Inject
-  SearchService searchService;
-
-  @Inject
-  DiskContentService diskContentService;
-
   @GET
   @Produces({APPLICATION_JSON})
   public Uebersicht getUebersicht() {

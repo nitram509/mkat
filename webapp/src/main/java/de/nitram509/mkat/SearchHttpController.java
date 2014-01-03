@@ -16,9 +16,6 @@ public class SearchHttpController {
   @Inject
   SearchService searchService;
 
-  @Inject
-  DiskContentService diskContentService;
-
   @GET
   @Path("{query}")
   @Produces({APPLICATION_JSON})

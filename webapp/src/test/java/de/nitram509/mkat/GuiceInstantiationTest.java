@@ -2,7 +2,7 @@ package de.nitram509.mkat;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.nitram509.videomedialist.repository.connection.VideoMediaListConnectionFactory;
+import de.nitram509.mkat.repository.connection.MkatConnectionFactory;
 import org.testng.annotations.Test;
 
 public class GuiceInstantiationTest {
@@ -14,7 +14,7 @@ public class GuiceInstantiationTest {
     );
 
     // next line will throw an exception if dependencies missing
-    injector.getProvider(VideoMediaListConnectionFactory.class);
+    injector.getProvider(MkatConnectionFactory.class);
   }
 
 }

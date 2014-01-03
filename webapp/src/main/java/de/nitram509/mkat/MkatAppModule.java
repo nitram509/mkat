@@ -4,14 +4,10 @@ import com.google.inject.AbstractModule;
 import de.nitram509.mkat.repository.LanguageRepository;
 import de.nitram509.mkat.repository.connection.MkatConnection;
 import de.nitram509.mkat.repository.connection.MkatConnectionFactory;
-import de.nitram509.videomedialist.repository.connection.VideoMediaListConnectionFactory;
-
-import java.sql.Connection;
 
 public class MkatAppModule extends AbstractModule {
   @Override
   protected void configure() {
-    bind(Connection.class).toProvider(VideoMediaListConnectionFactory.class);
     bind(MkatConnection.class).toProvider(MkatConnectionFactory.class);
 
     bind(LanguageRepository.class);
