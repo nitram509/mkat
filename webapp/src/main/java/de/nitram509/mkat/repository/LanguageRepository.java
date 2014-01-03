@@ -1,6 +1,7 @@
 package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.languages.Language;
+import de.nitram509.mkat.repository.connection.MkatConnection;
 
 import javax.inject.Inject;
 import java.sql.Connection;
@@ -12,8 +13,7 @@ import java.util.List;
 
 public class LanguageRepository {
 
-  @Inject
-  Connection connection;
+  private Connection connection;
 
   public List<Language> findAll(){
     List<Language> languages = new ArrayList<>();
@@ -41,4 +41,10 @@ public class LanguageRepository {
     }
     return languages;
   }
+
+  @Inject
+  public void setConnection(MkatConnection connection) {
+    this.connection = connection.get();
+  }
+
 }

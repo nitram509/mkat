@@ -1,7 +1,7 @@
 package de.nitram509.mkat.repository;
 
 import de.nitram509.mkat.api.languages.Language;
-import de.nitram509.videomedialist.repository.connection.VideoMediaListConnectionFactory;
+import de.nitram509.mkat.repository.connection.MkatConnectionFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,7 +16,7 @@ public class LanguageRepositoryLearningTest {
   @BeforeMethod
   public void setup() {
     languageRepository = new LanguageRepository();
-    languageRepository.connection = new VideoMediaListConnectionFactory().get();
+    languageRepository.setConnection(new MkatConnectionFactory().get());
   }
 
   @Test
