@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
+import sun.net.www.http.PosterOutputStream;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class MkatGuiceServletConfig extends GuiceServletContextListener {
         bind(SearchHttpController.class);
         bind(DiskContentHttpController.class);
         bind(UebersichtHttpController.class);
-        bind(DiskContentService.class);
+        bind(PosterHttpController.class);
 
         // hook Jersey into Guice Servlet
         bind(GuiceContainer.class);
@@ -33,7 +34,7 @@ public class MkatGuiceServletConfig extends GuiceServletContextListener {
         params.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
         params.put("com.sun.jersey.config.feature.FilterForwardOn404", "true");
 
-        params.put("com.sun.jersey.config.feature.Trace", "true");
+//        params.put("com.sun.jersey.config.feature.Trace", "true");
 
         filter("/*").through(GuiceContainer.class, params);
 
