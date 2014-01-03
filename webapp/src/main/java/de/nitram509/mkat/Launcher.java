@@ -20,7 +20,7 @@ public class Launcher {
 
     ServletContextHandler servletContextHandler = new ServletContextHandler();
     servletContextHandler.addEventListener(new MkatGuiceServletConfig());
-    servletContextHandler.addFilter(GuiceFilter.class, "/rest/*", null);
+    servletContextHandler.addFilter(GuiceFilter.class, "/*", null);
 
     servletContextHandler.addServlet(DefaultServlet.class, "/*");
     servletContextHandler.setResourceBase("src/main/webapp");

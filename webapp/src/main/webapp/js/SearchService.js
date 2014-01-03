@@ -57,7 +57,7 @@ mkat.factory('$searchService', ["$http", function ($http) {
 
       var getHttpConfig = {
         method: "GET",
-        url: 'rest/search/' + params.query,
+        url: 'search/' + params.query,
         params: {
           "kw": params.searchParameterLogic,
           "order": params.searchParameterSort,

@@ -19,7 +19,9 @@ public class MkatGuiceServletConfig extends GuiceServletContextListener {
 
         install(new MkatAppModule());
 
-        bind(RestDispatcherServlet.class);
+        bind(SearchHttpController.class);
+        bind(DiskContentHttpController.class);
+        bind(UebersichtHttpController.class);
         bind(DiskContentService.class);
 
         // hook Jersey into Guice Servlet
@@ -29,10 +31,11 @@ public class MkatGuiceServletConfig extends GuiceServletContextListener {
 
 //        params.put("com.sun.jersey.config.property.packages", "de.nitram509.mkat");
         params.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
+        params.put("com.sun.jersey.config.feature.FilterForwardOn404", "true");
 
         params.put("com.sun.jersey.config.feature.Trace", "true");
 
-        serve("/*").with(GuiceContainer.class, params);
+        filter("/*").through(GuiceContainer.class, params);
 
       }
     });

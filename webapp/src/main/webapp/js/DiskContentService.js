@@ -29,7 +29,7 @@ mkat.factory('$diskContentService', ["$http", function ($http) {
     getDiskContentById: function (diskId, successCallback) {
       var getHttpConfig = {
         method: "GET",
-        url: 'rest/disk/' + diskId
+        url: 'disk/' + diskId
       };
       $http(getHttpConfig).success(function (data) {
         enrichResult(data);
