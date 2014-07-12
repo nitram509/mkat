@@ -13,7 +13,10 @@ public class GuiceInstantiationTest {
         new MkatAppModule()
     );
 
-    // next line will throw an exception if dependencies missing
+    assertDependencyIsAvailable(injector);
+  }
+
+  private void assertDependencyIsAvailable(Injector injector) {
     injector.getProvider(MkatConnectionFactory.class);
   }
 
