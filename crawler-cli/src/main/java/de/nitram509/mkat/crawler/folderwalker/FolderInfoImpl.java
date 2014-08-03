@@ -49,6 +49,12 @@ class FolderInfoImpl implements FolderInfo {
   }
 
   @Override
+  public boolean isPoster() {
+    String name = candidate.getName().toLowerCase();
+    return isFile() && (name.endsWith(".jpg") || name.endsWith(".jpeg") || name.endsWith(".png") || name.endsWith(".gif"));
+  }
+
+  @Override
   public long size() {
     if (isFile()) {
       try {

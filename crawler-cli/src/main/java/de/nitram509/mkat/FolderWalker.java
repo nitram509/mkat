@@ -45,10 +45,11 @@ public class FolderWalker {
   private static void printHelp() {
     System.out.println("FolderWalker 0.1");
     System.out.println("Usage:");
-    System.out.println("  FolderWalker [-gid name] [-md5] [-h] baseFolder");
+    System.out.println("  FolderWalker [-gid name] [-u] [-md5] [-h] baseFolder");
     System.out.println("Options:");
     System.out.println("  -gid name GroupID name for the media");
     System.out.println("  -md5      Calculate md5 checksums");
+    System.out.println("  -u        Update mode");
     System.out.println("  -all      Include System and Hidden files");
     System.out.println("  -h        Print help");
     System.out.println("  -v        Verbose");

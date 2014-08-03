@@ -15,6 +15,8 @@ public interface FolderInfo {
 
   public File asFile();
 
+  boolean isPoster();
+
   public long size();
 
   public Date getLastModifiedTime();

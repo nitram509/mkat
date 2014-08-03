@@ -101,7 +101,7 @@ public class MoviesRepository {
     return days;
   }
 
-  public void save(Movie movie) {
+  public void insert(Movie movie) {
     String query = "insert into `movies` (" +
         " `name`" +
         ",`languages`" +
@@ -124,6 +124,37 @@ public class MoviesRepository {
         if (generatedKeys.next()) {
           movie.movie_id = generatedKeys.getInt(1);
         }
+      } finally {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public void update(Movie movie) {
+    String query = "insert into `movies` (" +
+        " `movie_id`" +
+        " `name`" +
+        ",`languages`" +
+        ",`format`" +
+        ",`description`" +
+        ",`updated`" +
+        ") VALUES ( ? , ? , ? , ? , ? , ? )";
+    try {
+      PreparedStatement preparedStatement = null;
+      try {
+        preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        int i = 1;
+        preparedStatement.setInt(i++, movie.movie_id);
+        preparedStatement.setString(i++, movie.name);
+        preparedStatement.setInt(i++, movie.languages);
+        preparedStatement.setInt(i++, movie.format);
+        preparedStatement.setString(i++, movie.description);
+        preparedStatement.setTimestamp(i++, new Timestamp(movie.updated != null ? movie.updated.getTime() : System.currentTimeMillis()));
+        preparedStatement.executeUpdate();
       } finally {
         if (preparedStatement != null) {
           preparedStatement.close();

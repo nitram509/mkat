@@ -80,6 +80,31 @@ public class MediasRepository {
     }
   }
 
+  public List<Media> findByNameAndLabel(String name, String label) {
+    String query = "select "
+            + " media_id,group_id,movie_id,name,label,language,mediatype,updated,description,size,"
+            + " (select count(*) from `files` f where k.media_id = f.media_id) as numberOfFiles "
+            + " from `medias` k"
+            + " where name = ? AND label = ?"
+            + " ORDER BY MEDIA_ID ASC";
+
+    try {
+      PreparedStatement preparedStatement = null;
+      try {
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, label);
+        return runPreparedStatement(preparedStatement);
+      } finally {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public void save(Media media) {
     if (media.media_id == 0) {
       insert(media);

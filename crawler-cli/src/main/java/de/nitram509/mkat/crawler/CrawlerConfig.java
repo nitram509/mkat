@@ -16,6 +16,8 @@ public class CrawlerConfig {
   private boolean md5 = false;
   private boolean verbose = false;
   private boolean includeHidden = false;
+  private boolean updatePoster = false;
+  private File posterDataPath = new File("d:\\mkat2-data");
 
   public CrawlerConfig(String... arguments) {
     parseArguments(arguments);
@@ -50,6 +52,10 @@ public class CrawlerConfig {
     return md5;
   }
 
+  public boolean isUpdatePoster() {
+    return updatePoster;
+  }
+
   public String[] getErrorMessages() {
     return errorMessages;
   }
@@ -60,6 +66,10 @@ public class CrawlerConfig {
 
   public boolean isIncludeHidden() {
     return includeHidden;
+  }
+
+  public File getPosterDataPath() {
+    return posterDataPath;
   }
 
   private void parseArguments(String... arguments) {
@@ -89,6 +99,9 @@ public class CrawlerConfig {
             break;
           case "-v":
             verbose = true;
+            break;
+          case "--updatePoster":
+            updatePoster = true;
             break;
           default:
             baseFolder = argument;

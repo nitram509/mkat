@@ -74,4 +74,10 @@ public class FileUtils {
     return sb.toString();
   }
 
+  public static String getExtensionWithDot(File file) {
+    String name = file.getName();
+    int i = name.lastIndexOf('.');
+    return name.substring(i > -1 ? i : 0);
+  }
+
 }
