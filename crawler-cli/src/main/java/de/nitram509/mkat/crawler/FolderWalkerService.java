@@ -9,9 +9,11 @@ import de.nitram509.mkat.crawler.folderwalker.FolderWalker;
 import de.nitram509.mkat.model.Media;
 import de.nitram509.mkat.model.MkatFile;
 import de.nitram509.mkat.model.Movie;
+import de.nitram509.mkat.model.Poster;
 import de.nitram509.mkat.repository.FilesRepository;
 import de.nitram509.mkat.repository.MediasRepository;
 import de.nitram509.mkat.repository.MoviesRepository;
+import de.nitram509.mkat.repository.PostersRepository;
 import jedi.functional.Filter;
 
 import java.io.File;
@@ -39,6 +41,7 @@ public class FolderWalkerService {
   private MoviesRepository moviesRepository;
   private FilesRepository filesRepository;
   private CrawlerConfig crawlerConfig;
+  private PostersRepository postersRepository;
 
   public void setup(CrawlerConfig crawlerConfig) {
     Injector injector = Guice.createInjector(
@@ -47,6 +50,7 @@ public class FolderWalkerService {
     mediasRepository = injector.getInstance(MediasRepository.class);
     moviesRepository = injector.getInstance(MoviesRepository.class);
     filesRepository = injector.getInstance(FilesRepository.class);
+    postersRepository = injector.getInstance(PostersRepository.class);
 
     if (crawlerConfig.isVerbose()) {
       log.setLevel(Level.INFO);
@@ -77,7 +81,7 @@ public class FolderWalkerService {
         saveToDatabase(discoveryResult);
       }
       if (crawlerConfig.isUpdatePoster()) {
-        renamePosterFiles(discoveryResult.media, discoveryResult.posters);
+        renamePosterFilesAndSaveToDatabase(discoveryResult.media, discoveryResult.posters);
       } else {
         deletePosterFile(discoveryResult);
       }
@@ -92,20 +96,25 @@ public class FolderWalkerService {
     }
   }
 
-  private void renamePosterFiles(Media media, File[] posters) {
-    String name = fixedLength(media.name, 100);
-    String label = fixedLength(media.label, 50);
-    List<Media> medias = mediasRepository.findByNameAndLabel(name, label);
-    if (medias.size() == 0) {
-      log.info(String.format("Nothing found found for name=%s and label=%s", name, label));
-    } else if (medias.size() == 1) {
-      media = medias.get(0);
+  private void renamePosterFilesAndSaveToDatabase(Media media, File[] posters) {
+    if (media.media_id != 0) {
+      String name = fixedLength(media.name, 100);
+      String label = fixedLength(media.label, 50);
+      List<Media> medias = mediasRepository.findByNameAndLabel(name, label);
+      if (medias.size() == 0) {
+        log.info(String.format("Nothing found found for name=%s and label=%s", name, label));
+      } else if (medias.size() == 1) {
+        media = medias.get(0);
+      } else {
+        log.info(String.format("Duplicates found for name=%s and label=%s", name, label));
+      }
+    }
+    if (media.media_id != 0) {
       for (File poster : posters) {
         File newPosterName = createPosterName(media.media_id, poster);
         poster.renameTo(newPosterName);
+        postersRepository.save(new Poster(newPosterName.getName(), media.media_id));
       }
-    } else {
-      log.info(String.format("Duplicates found for name=%s and label=%s", name, label));
     }
   }
 
