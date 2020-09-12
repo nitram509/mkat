@@ -16,11 +16,9 @@ public class MkatConnectionFactory implements Provider<MkatConnection> {
   public MkatConnection get() {
     if (connection == null) {
       try {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost/mkat", USER, PASSW);
-      } catch (ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      } catch (SQLException e) {
+      } catch (ClassNotFoundException | SQLException e) {
         throw new RuntimeException(e);
       }
     }
